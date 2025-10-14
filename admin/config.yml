@@ -1,0 +1,22 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "movies"
+    label: "Movies"
+    folder: "data"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Year", name: "year", widget: "number" }
+      - { label: "Rating", name: "rating", widget: "number" }
+      - { label: "Duration", name: "duration", widget: "string" }
+      - { label: "Poster", name: "poster", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
