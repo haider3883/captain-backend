@@ -3,14 +3,14 @@ backend:
   branch: main
 
 media_folder: "static/uploads"
-public_folder: "/uploads"
+public_folder: "/static/uploads"
 
 collections:
   - name: "movies"
     label: "Movies"
     folder: "data"
     create: true
-    slug: "{{slug}}"
+    slug: "{{title}}"
     extension: "json"
     format: "json"
     fields:
@@ -19,4 +19,3 @@ collections:
       - { label: "Rating", name: "rating", widget: "number" }
       - { label: "Duration", name: "duration", widget: "string" }
       - { label: "Poster", name: "poster", widget: "image" }
-      - { label: "Description", name: "description", widget: "text" }
