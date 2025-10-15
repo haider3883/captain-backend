@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MovieFlix</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #111;
+      color: #fff;
+      text-align: center;
+    }
+    header {
+      background: #e50914;
+      padding: 20px;
+      font-size: 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .movies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .movie {
+      background: #1c1c1c;
+      padding: 10px;
+      border-radius: 10px;
+    }
+    .movie img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .movie h3 {
+      margin: 10px 0 5px;
+    }
+  </style>
+</head>
+<body>
+  <header>🎬 MovieFlix</header>
+  <div class="movies" id="movies"></div>
+
+  <script>
+    fetch('./data/movies.json')
+      .then(res => res.json())
+      .then(data => {
+        const movies = document.getElementById('movies');
+        movies.innerHTML = data.map(m => `
+          <div class="movie">
+            <img src="${m.poster || 'https://via.placeholder.com/200x300'}" alt="${m.title}" />
+            <h3>${m.title}</h3>
+            <p>${m.year} • ⭐ ${m.rating}</p>
+          </div>
+        `).join('');
+      })
+      .catch(err => {
+        document.getElementById('movies').innerHTML = "<p>⚠️ Movies not loading!</p>";
+        console.error(err);
+      });
+  </script>
+</body>
+</html>
